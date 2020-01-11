@@ -1,0 +1,41 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class proxeiro {
+    public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in);
+        Path file = Paths.get("password.txt");
+        Scanner fileReader = new Scanner(file);
+        String oldPassword = fileReader.next();
+        String newPassword2;
+        String newPassword1;
+
+        System.out.print("Enter current password: ");
+        boolean knowsOldPassword = (input.next().equals(oldPassword));
+
+        if (knowsOldPassword) {
+            System.out.print("Enter new password: ");
+            newPassword2 = input.next();
+
+            if (!newPassword2.equals(oldPassword)) {
+                System.out.println("Enter new password again:");
+
+                newPassword1 = newPassword2.equals(input.next()) ? newPassword2 : oldPassword;
+
+                Files.write(file, Collections.singleton(newPassword1));
+                if (newPassword1.equals(newPassword2)) {
+                    System.out.print("Password changed succesfully");
+                } else {
+                    System.out.println("Wrong password, please try again");
+                }
+            } else
+                System.out.println("New password can't be old password, please try again");
+
+        } else
+            System.out.print("Wrong password, please try again");
+    }
+}
