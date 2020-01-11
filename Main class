@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class proxeiro {
+public class Main {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         Path file = Paths.get("password.txt");
